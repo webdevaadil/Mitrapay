@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Saraswat Scraper",
+  "version": "1.0",
+  "description": "Scrape transactions from Saraswat Bank",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["http://localhost:3000/*"],
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:3000/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
