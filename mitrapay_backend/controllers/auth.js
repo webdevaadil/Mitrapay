@@ -1011,7 +1011,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
   const total_user = await User.countDocuments(filter).read('primary');
   const today_user = await User.countDocuments({
     ...filter,
-    createdAt: { $gte: (new Date(startOfTodayUTC)) - (5.5 * 60 * 60 * 1000), $lte: (new Date(endOfTodayUTC).setHours(23, 59, 59, 999)) - (5.5 * 60 * 60 * 1000) },
+    createdAt:{ $gte: startOfTodayUTC, $lte: endOfTodayUTC },
   }).read('primary');
 
   // 2️⃣ Subadmins (only for Super_Admin)
@@ -1020,7 +1020,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
   if (role === "Super_Admin") {
     total_subadmin = await Subadmin.countDocuments({}).read('primary');
     today_subadmin = await Subadmin.countDocuments({
-      createdAt: { $gte: startOfDay, $lte: endOfDay },
+      createdAt:{ $gte: startOfTodayUTC, $lte: endOfTodayUTC },
     }).read('primary');
   }
   let balancequery
@@ -1042,7 +1042,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
   }
 
   const total_payout = await Payout.aggregate([
-    { $match: { ...query, status: "Credited" } },
+    { $match: { ...query, status: "COMPLETED" } },
     { $group: { _id: null, sum: { $sum: "$Amount" } } },
   ]).read('primary');
 
@@ -1050,8 +1050,8 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
     {
       $match: {
         ...query,
-        status: "Credited",
-        createdAt: { $gte: startOfDay, $lte: endOfDay },
+        status: "COMPLETED",
+        createdAt: { $gte: startOfTodayUTC, $lte: endOfTodayUTC },
       },
     },
     { $group: { _id: null, sum: { $sum: "$Amount" } } },
@@ -1064,7 +1064,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
   ]).read('primary');
 
   const today_account = await Payout.aggregate([
-    { $match: { ...query, createdAt: { $gte: startOfDay, $lte: endOfDay } } },
+    { $match: { ...query, createdAt:{ $gte: startOfTodayUTC, $lte: endOfTodayUTC }, } },
     { $count: "total_account" },
   ]).read('primary');
 
@@ -1084,7 +1084,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
   const totalbeneficiary = await BeneficiaryAccount.countDocuments(queryforBeneficiary).read('primary');
   const today_beneficiary = await BeneficiaryAccount.countDocuments({
     ...queryforBeneficiary,
-    createdAt: { $gte: startOfDay, $lte: endOfDay },
+    createdAt:{ $gte: startOfTodayUTC, $lte: endOfTodayUTC },
   }).read('primary');
 
   // total claim
@@ -1103,7 +1103,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
   const totalClaim = await Claims.countDocuments(Claimfilter).read('primary');
   const TodayClaim = await Claims.countDocuments({
     ...Claimfilter,
-    createdAt: { $gte: startOfDay, $lte: endOfDay },
+    createdAt:{ $gte: startOfTodayUTC, $lte: endOfTodayUTC },
   }).read('primary');
 
   let transactionQuery = {};
@@ -1128,7 +1128,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
     { $match: { ...transactionQuery, type: "credit", } },
     { $group: { _id: null, sum: { $sum: "$amount" } } }]).read('primary')
   const todalrejectedtransaction = await Transaction.aggregate([{
-    $match: { ...transactionQuery, type: "credit", createdAt: { $gte: startOfDay, $lte: endOfDay } },
+    $match: { ...transactionQuery, type: "credit", createdAt:{ $gte: startOfTodayUTC, $lte: endOfTodayUTC }, },
 
   }, { $group: { _id: null, sum: { $sum: "$amount" } } }]).read('primary')
   const balances = await CreditHistory.aggregate([
@@ -1157,7 +1157,7 @@ exports.dashboarddata = catchAsyncerror(async (req, res, next) => {
         today: [
           {
             $match: {
-              createdAt: { $gte: startOfDay, $lte: endOfDay },
+              createdAt: { $gte: startOfTodayUTC, $lte: endOfTodayUTC },
             },
           },
           {
@@ -1409,7 +1409,7 @@ exports.Create_payout = async (req, res) => {
 
     // Usage Example:
     const payload = {
-      "sender_account_number": "WTRX04697029820",
+      "sender_account_number": "003612100019759",
       "order_id": order_id,
       "transfer_type": "IMPS",
       "name": beneficiaryName,
@@ -1549,7 +1549,7 @@ exports.Create_payout = async (req, res) => {
     //           try {
     //             const approved = await Payout.findOneAndUpdate(
     //               { _id: payout._id, status: "Pending" },
-    //               { $set: { status: "Credited" } },
+    //               { $set: { status: "COMPLETED" } },
     //               { new: true }
     //             );
 
@@ -1944,7 +1944,7 @@ exports.create_BeneficiaryAccount = async (req, res) => {
     }
     // const total_payout = await Payout.aggregate([
     //   { $match: query },
-    //   { $match: { status: "Credited"} },
+    //   { $match: { status: "COMPLETED"} },
     //   { $group: { _id: null, sum: { $sum: "$Amount" } } },
     // ]
     // )
@@ -2958,7 +2958,7 @@ exports.processBulkPayout = catchAsyncerror(async (req, res) => {
               role: record.uploadedBy.role,
             },
           ],
-          status: "Credited",
+          status: "COMPLETED",
           Availble_balance: matchedUser.credit - Amount,
           Credit_status: `Confirmed ${indiaTime}`
         });
@@ -3012,7 +3012,7 @@ exports.processBulkPayout = catchAsyncerror(async (req, res) => {
             setTimeout(async () => {
               await Payout.findOneAndUpdate(
                 { _id: payout._id, status: "Pending" },
-                { $set: { status: "Credited" } },
+                { $set: { status: "COMPLETED" } },
                 { new: true }
               );
             }, 30000);
@@ -3221,14 +3221,14 @@ exports.Getutr = catchAsyncerror(async (req, res) => {
           if (utr) payout.utr = utr;
           if (name) payout["Beneficiary Name"] = name;
           if (amount) payout.Amount = amount;
-          payout.status = "Credited";
+          payout.status = "COMPLETED";
           payout.Credit_status = `Confirmed ${indiaTime}`;
           payout.remark = payout.remark;
         }
         await payout.save();
         updatedPayouts.push(payout);
 
-        if (user.call_back_url && payout.status !== "Credited", payout.utr != "") {
+        if (user.call_back_url && payout.status !== "COMPLETED", payout.utr != "") {
           console.log(`✅ Payout ${payout._id} approved`);
 
           // ✅ Callback Trigger
@@ -3410,7 +3410,7 @@ exports.download_payout_excel = async (req, res) => {
 
       return {
         _id: t._id,
-        status: t.type === "credit" ? "Failed" : "Credited",
+        status: t.type === "credit" ? "Failed" : "COMPLETED",
         Amount: t.amount,
         utr: req.user.role == "User"
           ? ((matchedPayout?.transaction_id || matchedPayout?.utr) || "")
@@ -3439,7 +3439,7 @@ exports.download_payout_excel = async (req, res) => {
 
     // --- Calculate Opening Balance ---
     allData.forEach((p) => {
-      if (p.status === "Credited") totalDebits += p.Amount;
+      if (p.status === "COMPLETED") totalDebits += p.Amount;
     });
 
     const openingBalance = totalDebits + (req.user.credit || 0);
@@ -3499,7 +3499,7 @@ exports.download_payout_excel = async (req, res) => {
     // let balance = req.user.balance || 0;
     allData.forEach(p => {
       // console.log(p)
-      const debit = p.status === "Credited" ? p.Amount || p.amount : 0;
+      const debit = p.status === "COMPLETED" ? p.Amount || p.amount : 0;
       const credit = p.status === "Failed" ? p.Amount || p.amount : 0;
       const name = p['Beneficiary Name'] || p.accountHolderName || "";
       const account = p['Beneficiary Account No'] || p.accountNumber || "";

@@ -22,8 +22,8 @@ import { AppHeaderDropdown } from './header/index'
 import logo from '../assets/images/tigerpay.png'
 
 // --- Design Constants ---
-const CUSTOM_PRIMARY = '#ff6600'
-const TEXT_ACCENT = '#cc5200'
+const CUSTOM_PRIMARY = '#ff66b2'
+const TEXT_ACCENT = '#cc4a92' 
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -90,15 +90,20 @@ const AppHeader = () => {
         {/* --- Left: Logo --- */}
         <div className="d-flex align-items-center gap-3">
           <NavLink to="/dashboard">
-            <img
-              src={logo}
-              alt="TigerPay Logo"
-              style={{
-                height: '55px',
-                width: 'auto',
-                objectFit: 'contain',
-              }}
-            />
+            <h1
+                        style={{
+                          fontSize: "28px",
+                          fontWeight: "800",
+                          background: "linear-gradient(90deg, #ff7b00, #ff007f)",
+                          WebkitBackgroundClip: "text",
+                          color: "transparent",
+                          letterSpacing: "1px",
+                          transition: "0.3s ease",
+                        }}
+                        className="hover:scale-105 hover:tracking-wider"
+                      >
+                        Mitra Pay
+                      </h1>
           </NavLink>
         </div>
 

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import routes from '../routes'
 
 // --- Theme ---
-const CUSTOM_PRIMARY = '#ff6600' // Vibrant Orange
+const CUSTOM_PRIMARY = '#ff66b2' // Vibrant Pink (updated from orange)
 
 const AppContent = () => {
   const { user, loading } = useSelector((state) => state.user)

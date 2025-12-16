@@ -181,17 +181,31 @@ useEffect(() => {
               >
                 <CCardBody>
                   <div className="d-flex justify-content-center mb-4">
-                    <img
+                    {/* <img
                       src={TIGER_PAY_LOGO}
                       alt="Tiger Pay Logo"
                       style={{
                         width: '150px',
                         height: 'auto',
                         objectFit: 'contain',
-                      }}
-                    />
+                      }} 
+                    /> */}
+                      <h1
+                        style={{
+                          fontSize: "28px",
+                          fontWeight: "800",
+                          background: "linear-gradient(90deg, #ff7b00, #ff007f)",
+                          WebkitBackgroundClip: "text",
+                          color: "transparent",
+                          letterSpacing: "1px",
+                          transition: "0.3s ease",
+                        }}
+                        className="hover:scale-105 hover:tracking-wider"
+                      >
+                        Mitra Pay
+                      </h1>
                   </div>
-                  <h4 className="fw-bold mb-4" style={{ color: '#ff9800' }}>Login to Tiger Pay</h4>
+                  <h4 className="fw-bold mb-4" style={{ color: 'linear-gradient(90deg, #ff7b00, #ff007f)#ff9800' }}>Login to Mitra Pay</h4>
                   <CForm onSubmit={handleLogin}>
 
                     {/* Email Input */}

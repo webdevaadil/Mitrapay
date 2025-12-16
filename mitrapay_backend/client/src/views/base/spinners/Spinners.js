@@ -2,9 +2,9 @@ import React from 'react'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CSpinner, CRow } from '@coreui/react'
 import { DocsComponents, DocsExample } from 'src/components'
 
-// --- Design Constants: Vibrant Orange Theme (Applied) ---
-const CUSTOM_PRIMARY = "#ff6600"; // Vibrant Orange
-const TEXT_ACCENT = "#cc5200"; // Slightly darker orange for strong text
+// --- Design Constants: Vibrant Pink Theme (Applied) ---
+const CUSTOM_PRIMARY = "#ff66b2"; // Vibrant Pink
+const TEXT_ACCENT = "#cc4a92"; // Slightly darker pink for strong text
 
 const Spinners = () => {
   // Common style for the orange card headers

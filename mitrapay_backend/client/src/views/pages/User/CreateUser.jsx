@@ -13,8 +13,8 @@ function CreateUser() {
     const { user } = useSelector((state) => state.user)
 
     // --- DARK MODE THEME COLORS ---
-    const ACCENT_COLOR = 'rgb(255, 102, 0)' // Original Orange Accent
-    const ACCENT_COLOR_LIGHT = 'rgba(255, 102, 0, 0.3)' // Slightly stronger light for contrast on dark BG
+    const ACCENT_COLOR = 'rgb(255, 102, 178)' // Updated Pink Accent
+    const ACCENT_COLOR_LIGHT = 'rgba(255, 102, 178, 0.3)' // Slightly stronger light for contrast on dark BG
     const DARK_BG_PRIMARY = '#121212' // Main background color for a true dark mode
     const DARK_BG_SECONDARY = '#1f1f1f' // Card/form container background
     const DARK_BG_TERTIARY = '#2c2c2c' // Input/inner section background

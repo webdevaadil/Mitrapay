@@ -42,7 +42,7 @@ const DARK_COLORS = {
 function ViewUser() {
     const [users, setUsers] = useState([])
     const [showModal, setShowModal] = useState(false)
-  const ACCENT_COLOR = 'rgb(255, 102, 0)' // Defined accent color for consistent styling
+  const ACCENT_COLOR = 'rgb(255, 102, 178)' // Defined accent pink for consistent styling
 
     const [searchTerm, setSearchTerm] = useState('')
     const [page, setPage] = useState(1)
@@ -280,7 +280,7 @@ function ViewUser() {
                     <Link
                         to="/createUser"
                         className="btn btn-lg fw-bold px-4 rounded-pill shadow-sm d-flex align-items-center transition-all duration-300 hover:scale-105"
-                        style={{ backgroundColor: "rgb(255, 102, 0)", color: 'white', border: 'none' }} // Keeping original vibrant color
+                        style={{ backgroundColor: "rgb(255, 102, 178)", color: 'white', border: 'none' }} // Updated to pink
                     >
                         <FaPlus className="me-2" />
                         Create User

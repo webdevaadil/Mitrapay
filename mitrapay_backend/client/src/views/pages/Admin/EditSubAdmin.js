@@ -11,8 +11,8 @@ function EditSubAdmin() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const ACCENT_COLOR = 'rgb(255, 102, 0)' // #ff6600
-  const ACCENT_COLOR_DARK = '#cc5200'
+  const ACCENT_COLOR = 'rgb(255, 102, 178)' // #ff66b2 (pink)
+  const ACCENT_COLOR_DARK = '#cc4a92'
 
   const permissionLabels = [
     'Dashboard',

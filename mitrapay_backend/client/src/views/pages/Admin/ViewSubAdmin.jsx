@@ -22,7 +22,7 @@ import { useSelector } from 'react-redux'
 import { Modal } from 'react-bootstrap'
 
 function ViewSubAdmin() {
-  const ACCENT_COLOR = 'rgb(255, 102, 0)' // Defined accent color for consistent styling
+  const ACCENT_COLOR = 'rgb(255, 102, 178)' // Defined accent pink for consistent styling
 
   const [admins, setAdmins] = useState([])
   const [searchTerm, setSearchTerm] = useState('')

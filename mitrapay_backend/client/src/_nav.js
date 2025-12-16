@@ -527,14 +527,14 @@ const _nav = [
 
 
       },
-      {
-        component: CNavItem,
-        name: 'Multiple Payments',
-        to: '/MultiplePayments',
-        label:"Multiple Payments",
+      // {
+      //   component: CNavItem,
+      //   name: 'Multiple Payments',
+      //   to: '/MultiplePayments',
+      //   label:"Multiple Payments",
 
 
-      },
+      // },
      
     ],
   },

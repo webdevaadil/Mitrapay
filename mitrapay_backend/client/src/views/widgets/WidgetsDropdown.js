@@ -158,10 +158,10 @@ const Dashboard = () => {
             New Multiple Payments
           </CButton>
      
-          {(user.role != "User") && (user.email != "tiger@gmail.com") && <CButton color="primary" className="fw-semibold shadow-sm ms-2" as={NavLink} to="/MultiplePayments">
+          {/* {(user.role != "User") && (user.email != "tiger@gmail.com") && <CButton color="primary" className="fw-semibold shadow-sm ms-2" as={NavLink} to="/MultiplePayments">
             <FaPlus className="me-2" />
             Bulk UTR 
-          </CButton>}
+          </CButton>} */}
         </CCol>
       </CRow>
 

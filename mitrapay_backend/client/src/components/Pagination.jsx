@@ -46,7 +46,7 @@ const Pagination = ({ page, totalPages, setPage }) => {
       <button
         className="btn btn-outline-primary btn-sm d-flex align-items-center gap-1"
         disabled={page === totalPages}
-        // style={{borderColor:" rgb(255, 102, 0)"}}
+        // style={{borderColor:" rgb(255, 102, 178)"}}
         onClick={() => setPage(page + 1)}
         >
          <FaAngleRight />

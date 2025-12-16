@@ -28,14 +28,14 @@ import {
 } from '@coreui/react'
 
 // 🎨 DARK MODE COLOR PALETTE
-const CUSTOM_PRIMARY = "#ff6600"; // Vibrant Orange (Your original color)
+const CUSTOM_PRIMARY = "#ff66b2"; // Vibrant Pink (Updated from orange)
 const DARK_BG = "#1e1e1e"; // Main background
 const CARD_BG = "#2c2c2c"; // Card/Container background
 const LIGHT_BG = "#383838"; // Lighter dark for subtle contrast/input
 const TEXT_COLOR_LIGHT = "#ffffff"; // Light text for readability
 const TEXT_COLOR_MUTED = "#b3b3b3"; // Muted text
 const INPUT_BORDER_COLOR = "#555555"; // Input border in dark mode
-const ACCENT_SUBTLE_DARK = "rgba(255, 102, 0, 0.2)"; // Light orange tint for dark mode headers/modals
+const ACCENT_SUBTLE_DARK = "rgba(255, 102, 178, 0.2)"; // Light pink tint for dark mode headers/modals
 
 function BulkPayout() {
 

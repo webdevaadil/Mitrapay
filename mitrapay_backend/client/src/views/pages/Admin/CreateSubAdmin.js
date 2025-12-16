@@ -7,8 +7,8 @@ import { FaChevronLeft, FaList, FaPlusCircle } from 'react-icons/fa' // Import i
 
 function CreateSubAdmin() {
   const navigate = useNavigate()
-  const ACCENT_COLOR = 'rgb(255, 102, 0)'
-  const ACCENT_COLOR_DARK = '#cc5200'
+  const ACCENT_COLOR = 'rgb(255, 102, 178)'
+  const ACCENT_COLOR_DARK = '#cc4a92'
 
   // --- DARK MODE THEME COLORS ---
   const DARK_BG = '#121212' // Main background
