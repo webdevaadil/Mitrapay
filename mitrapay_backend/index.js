@@ -71,7 +71,7 @@ const show = "pro";
 app.post("/trexoedge/webhook", async (req, res) => {
   try {
     const { transaction_id } = res.req.body;
-
+console.log(res)
     if (!transaction_id) {
       return res.status(400).json({ error: "transaction_id required" });
     }
@@ -93,21 +93,21 @@ app.post("/trexoedge/webhook", async (req, res) => {
     );
 
     const data = trexoResponse.data.data;
-
+    console.log(trexoResponse)
     await Payout.findOneAndUpdate(
       { transaction_id: data.transaction_id },
       { status: data.status, utr: data.utr }
     );
     const io = req.app.get("io");
     const notification = {
-      message: `Payout of ₹${data.amount} to "${ data.name}" has been initiated at ${data.timestamp}.`,
+      message: `Payout of ₹${data.amount} to "${data.name}" has been initiated at ${data.timestamp}.`,
       type: "success",
       createdAt: new Date(),
     };
     io.to("Super_Admin").emit("notification", notification);
     io.to("Sub_Admin").emit("notification", notification);
 
-   
+
 
   } catch (err) {
     console.error("Webhook error:", err.response?.data || err.message);

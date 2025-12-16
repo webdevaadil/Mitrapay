@@ -28,3 +28,6 @@ bulkPayout
 *.njsproj
 *.sln
 *.sw?
+*.pem?
+.pem
+newpg.pem

@@ -404,7 +404,7 @@ function ViewPayout() {
                     <td>
                       <span
                         // Standard colors for status
-                        className={`badge text-uppercase fw-semibold ${payout.status === "Credited" ? "bg-success" : payout.status === "Pending" ? "bg-warning text-dark" : "bg-danger"}`}
+                        className={`badge text-uppercase fw-semibold ${payout.status === "COMPLETED" ? "bg-success" : payout.status === "Pending" ? "bg-warning text-dark" : "bg-danger"}`}
                       >
                         {payout.status}
                       </span>
